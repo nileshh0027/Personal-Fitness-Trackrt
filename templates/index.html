@@ -35,6 +35,12 @@
         <div class="card p-4 shadow-lg mt-4">
             <h2 class="text-center">Enter Your Fitness Data</h2>
             <form method="POST" action="/submit">
+                
+                <div class="mb-3">
+                    <label class="form-label">Date : </label>
+                    <input type="date" class="form-control" name="date" required>
+                </div>
+
                 <div class="mb-3">
                     <label class="form-label">Steps Walked:</label>
                     <input type="number" class="form-control" name="steps" required>
