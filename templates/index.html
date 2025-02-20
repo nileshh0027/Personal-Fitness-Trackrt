@@ -4,65 +4,112 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Personal Fitness Tracker</title>
-    <link rel="stylesheet" href="static/css/style.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #121212;
+            color: white;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            display: flex;
+            height: 100vh;
+        }
+        .sidebar {
+            width: 25%;
+            background: #1e1e1e;
+            padding: 20px;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.2);
+        }
+        .content {
+            flex-grow: 1;
+            padding: 20px;
+        }
+        input[type=range] {
+            width: 100%;
+        }
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid white;
+            padding: 10px;
+            text-align: center;
+        }
+        .prediction-box {
+            margin-top: 20px;
+            padding: 20px;
+            background: #333;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container">
-            <a class="navbar-brand" href="/">Fitness Tracker</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/dashboard">Dashboard</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/about">About</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/contact">Contact</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Main Content -->
-    <div class="container mt-5">
-        <h1 class="text-center">Welcome to Your Personal Fitness Tracker</h1>
-        <p class="text-center">Track your steps, calories, and heart rate to stay healthy.</p>
-
-        <!-- Data Entry Form -->
-        <div class="card p-4 shadow-lg mt-4">
-            <h2 class="text-center">Enter Your Fitness Data</h2>
-            <form method="POST" action="/submit">
-                
-                <div class="mb-3">
-                    <label class="form-label">Date : </label>
-                    <input type="date" class="form-control" name="date" required>
-                </div>
-
-                <div class="mb-3">
-                    <label class="form-label">Steps Walked:</label>
-                    <input type="number" class="form-control" name="steps" required>
-                </div>
-                <div class="mb-3">
-                    <label class="form-label">Calories Burned:</label>
-                    <input type="number" class="form-control" name="calories" required>
-                </div>
-                <div class="mb-3">
-                    <label class="form-label">Heart Rate:</label>
-                    <input type="number" class="form-control" name="heart_rate" required>
-                </div>
-                <button type="submit" class="btn btn-primary w-100">Submit</button>
-            </form>
-        </div>
+    <div class="container">
+        <!-- Sidebar for user input -->
+        <aside class="sidebar">
+            <h2>User Input Parameters:</h2>
+            <label for="age">Age:</label>
+            <input type="range" id="age" min="10" max="100" value="39">
+            <span id="age-value">39</span>
+            
+            <label for="bmi">BMI:</label>
+            <input type="range" id="bmi" min="15" max="40" value="24">
+            <span id="bmi-value">24</span>
+            
+            <label for="duration">Duration (min):</label>
+            <input type="range" id="duration" min="0" max="35" value="15">
+            <span id="duration-value">15</span>
+            
+            <label for="heart-rate">Heart Rate:</label>
+            <input type="range" id="heart-rate" min="60" max="130" value="80">
+            <span id="heart-rate-value">80</span>
+            
+            <label for="body-temp">Body Temperature (°C):</label>
+            <input type="range" id="body-temp" min="36" max="42" value="38">
+            <span id="body-temp-value">38</span>
+            
+            <label>Gender:</label>
+            <input type="radio" name="gender" value="male" checked> Male
+            <input type="radio" name="gender" value="female"> Female
+        </aside>
+        
+        <!-- Main Content Area -->
+        <main class="content">
+            <h1>Personal Fitness Tracker</h1>
+            <p>In this WebApp, you can observe your predicted calories burned based on user parameters.</p>
+            
+            <h2>Your Parameters:</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Age</th>
+                        <th>BMI</th>
+                        <th>Duration</th>
+                        <th>Heart Rate</th>
+                        <th>Body Temp</th>
+                        <th>Gender</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td id="param-age">39</td>
+                        <td id="param-bmi">24</td>
+                        <td id="param-duration">15</td>
+                        <td id="param-heart-rate">80</td>
+                        <td id="param-body-temp">38</td>
+                        <td id="param-gender">Male</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h2>Prediction:</h2>
+            <div class="prediction-box">Waiting for prediction...</div>
+        </main>
     </div>
-
-    <!-- Footer -->
-    <footer class="bg-dark text-white text-center py-3 mt-5">
-        &copy; 2025 Personal Fitness Tracker | All Rights Reserved
-    </footer>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
